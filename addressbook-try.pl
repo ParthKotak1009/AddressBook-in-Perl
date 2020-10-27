@@ -11,30 +11,89 @@ print("Searching                  4\n");
 print("Update an existing entry   5\n");
 print("Exit                       6\n");
 
-my $input = <>;
+my $input;
+my $flg=1;
+while($flg){
+	$input =<STDIN>;
+	if($input =~ /^[1-6]$/){
+		$flg=0;
+	}else{
+		print("Enter values between 1-6=>");
+		
+	}
+	
+}
+
 chop ($input);
 
 if($input){
 	
 	if ( $input == 1 ){
+		my $FName;
 		print("Adding Entry\n");
 		print("Enter Full Name=>");
-		my $FName=<>;
+		my $flg=1;
+		while($flg){
+			$FName =<STDIN>;
+			if($FName =~ /^[A-Z][a-z]+\s[A-Z][a-z]+$/){
+				$flg=0;
+			}else{
+				print("Enter Aplhabetical values between A-Z/a-z=>");
+			}
+		}
+
 		chop($FName);
 		print("Enter Ph Number=>");
-		my $phNo=<>;
+		my $phNo;
+		$flg=1;
+		while($flg){
+			$phNo =<STDIN>;
+			if($phNo =~ /^[0-9]{10}$/){
+				$flg=0;
+			}else{
+				print("Enter Phone Number values between 0-9 and No alphabets allowed and 10 Digits please=>");
+			}
+		}
 		chop($phNo);
 		print("Enter Address line1=>");
-		my $address=<>;
+		my $address;
+		$flg=1;
+		while($flg){
+			$address =<STDIN>;
+			if($address =~ /^[0-9]*[\#\-\,\/\.\,\(\)\&]*[\s*[A-z]*]*$/){
+				$flg=0;
+			}else{
+				print("Enter address Value Correctcly=>");
+			}
+		}
 		chop($address);
 		print("Enter Address line2=>");
-		my $address1=<>;
+		my $address1;
+		$flg=1;
+		while($flg){
+			$address1 =<STDIN>;
+			if($address1 =~ /^[0-9]*[\#\-\,\/\.\,\(\)\&]*[\s*[A-z]*]*$/){
+				$flg=0;
+			}else{
+				print("Enter address Correctcly  please=>");
+			}
+		}
+		
 		chop($address1);
-		print("Enter City Name=>");
-		my $city=<>;
+		print("Enter City Name and Pin Code (if required)=>");
+		my $city;
+		$flg=1;
+		while($flg){
+			$city =<STDIN>;
+			if($city =~ /^[[A-z]*\s[0-9]{6}$/){
+				$flg=0;
+			}else{
+				print("Enter City and Pincode of  6 digits=>");
+			}
+		}
 		chop($city);
 		open(FHR,">>addressbook.txt") or die "cannot open file or error $!";
-		print FHR "$FName,$phNo,$address,$address1,$city\n";
+		print FHR "\n$FName,$phNo,$address,$address1,$city";
 		close(FHR);
 	  }
 	if( $input == 2 ) {
@@ -55,7 +114,7 @@ if($input){
 		} 
 		close(FILE);
 		}
-	if ( $input == 3 ) {
+	if ($input == 3 ) {
 		print("\nLets see whole Address Book\n");
 		open(FHR,"addressbook.txt") or die "Cannot open file or error $!";
 		while(<FHR>){
@@ -66,7 +125,16 @@ if($input){
 	if( $input == 4 ) {
 		print("\nSearching\n");
 		print("Enter Name of Person you want to find=>");
-		my $name=<>;
+		my $name;
+		my $flg=1;
+		while($flg){
+			$name =<STDIN>;
+			if($name =~ /^[A-Z][a-z]+\s[A-Z][a-z]+$/){
+				$flg=0;
+			}else{
+				print("Enter Aplhabetical values between A-Z/a-z=>");
+			}
+		}
 		chop($name);
 		open(FHR,"addressbook.txt") or die "Cannot open file or error $!";
 		while(my $str=<FHR>) { 
@@ -84,7 +152,16 @@ if($input){
 	if($input==5){
 		print("Update");
 		print("Enter the name of person you want to Update from the Address Book=>");
-		my $name=<>;
+		my $name;
+		my $flg=1;
+		while($flg){
+			$name =<STDIN>;
+			if($name =~ /^[A-Z][a-z]+\s[A-Z][a-z]+$/){
+				$flg=0;
+			}else{
+				print("Enter Aplhabetical values between A-Z/a-z=>");
+			}
+		}
 		chop($name);
 		open(my $store,"<addressbook.txt") or die "Cannot open file or error $!";
 		my @File_lines;
@@ -94,19 +171,66 @@ if($input){
 		}
 		close($store);
 		print("Enter Full Name=>");
-		my $FName=<>;
+		my $FName;
+		$flg=1;
+		while($flg){
+			$FName =<STDIN>;
+			if($FName =~ /^[A-Z][a-z]+\s[A-Z][a-z]+$/){
+				$flg=0;
+			}else{
+				print("Enter Aplhabetical values between A-Z/a-z=>");
+			}
+		}
 		chop($FName);
 		print("Enter Ph Number=>");
-		my $phNo=<>;
+		my $phNo;
+		$flg=1;
+		while($flg){
+			$phNo =<STDIN>;
+			if($phNo =~ /^[0-9]{10}$/){
+				$flg=0;
+			}else{
+				print("Enter Phone Number values between 0-9 and No alphabets allowed and 10 Digits please=>");
+			}
+		}
 		chop($phNo);
 		print("Enter Address line1=>");
-		my $address=<>;
+		my $address;
+		$flg=1;
+		while($flg){
+			$address =<STDIN>;
+			if($address =~ /^[[0-9]*[\#\-\,\/\.\,\(\)\&]*[\s*[A-z]+]*]*$/){
+				$flg=0;
+			}else{
+				print("Enter address Value Correctcly=>");
+			}
+		}
+		
 		chop($address);
 		print("Enter Address line2=>");
-		my $address1=<>;
+		my $address1;
+		$flg=1;
+		while($flg){
+			$address1 =<STDIN>;
+			if($address1 =~ /^[[0-9]*[\#\-\,\/\.\,\(\)\&]*[\s*[A-z]*]+]*$/){
+				$flg=0;
+			}else{
+				print("Enter address values between 0-9 and No alphabets allowed and 10 Digits please=>");
+			}
+		}
 		chop($address1);
 		print("Enter City Name=>");
-		my $city=<>;
+		my $city;
+		$flg=1;
+		while($flg){
+			$city =<STDIN>;
+			if($city =~ /^[[A-z]*\s[0-9]{6}$/){
+				$flg=0;
+			}else{
+				print("Enter City and Pincode of  6 digits=>");
+			}
+		}
+		
 		chop($city);
 		open( FILE, ">addressbook.txt" )or die "cannot open file or error $!";
 		foreach my $LINE (@File_lines ) { 
@@ -122,7 +246,7 @@ if($input){
 		
 	}
 	if ( $input == 6 ) {
-		print("have a good day ahead sir/mam!!!");
+		print("\t Have a good day ahead sir/mam!!!");
 		last;
 	}
 
